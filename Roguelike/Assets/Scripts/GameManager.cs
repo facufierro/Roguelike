@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Player.State == State.MOVING)
-            print(Player.State);
+            //print(Player.State);
         Combat();
 
     }

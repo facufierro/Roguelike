@@ -1,0 +1,1 @@
+public enum State { IDLE, MOVING, ATTACKING, CASTING }

@@ -1,0 +1,15 @@
+Combat
+    - Enemy AI
+        - Movement
+        - Detection
+    - Skills
+
+Gameplay
+    - Items
+    - Inventory
+
+Graphics
+
+Audio
+
+Ideas

@@ -20,20 +20,32 @@ public class Enemy : Character
             gameObject.SetActive(false);
     }
 
-    public IEnumerator Movement()
+    public IEnumerator Move()
     {
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
+        GameObject Target = GameObject.FindGameObjectWithTag("Player");
+        Vector3 TargetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector3 Position = transform.position;
+
+        //if (!Physics2D.OverlapCircle(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
+        //if (!Physics2D.OverlapCircle(transform.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
+
+
+        if (Target.GetComponent<Player>().State == State.MOVING)
         {
-            if (!Physics2D.OverlapCircle(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
-                transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+            if (Position.x < TargetPosition.x)
+                transform.position += new Vector3(1, 0, 0);
+            if (Position.x > TargetPosition.x)
+                transform.position += new Vector3(-1, 0, 0);
+            if (Position.y < TargetPosition.y)
+                transform.position += new Vector3(0, 1, 0);
+            if (Position.y > TargetPosition.y)
+                transform.position += new Vector3(0, -1, 0);
+
         }
-        if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
-        {
-            if (!Physics2D.OverlapCircle(transform.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
-                transform.position += new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
-        }
-        yield return new WaitForSeconds(0.2f);
-        StartCoroutine(Movement());
+
+
+        yield return new WaitForSeconds(MovementSpeed * 0.1f);
+        StartCoroutine(Move());
 
     }
     //public void Move(Player Target)

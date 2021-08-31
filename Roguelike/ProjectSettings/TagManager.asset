@@ -46,12 +46,12 @@ TagManager:
   - name: Floor
     uniqueID: 2255420923
     locked: 0
-  - name: Characters_Top
-    uniqueID: 1129426829
-    locked: 0
   - name: Walls
     uniqueID: 568079827
     locked: 0
   - name: Characters_Bot
     uniqueID: 3902814781
+    locked: 0
+  - name: Characters_Top
+    uniqueID: 1129426829
     locked: 0

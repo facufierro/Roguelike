@@ -16,19 +16,22 @@ public class Player : Character
 
     public IEnumerator Movement()
     {
-        State = State.MOVING;
+
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
         {
+            State = State.MOVING;
             if (!Physics2D.OverlapCircle(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
                 transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
         }
         if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
         {
+            State = State.MOVING;
             if (!Physics2D.OverlapCircle(transform.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 0.2f, LayerMask.GetMask("BlockingLayer")))
                 transform.position += new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
         }
 
         yield return new WaitForSeconds(0.2f);
+        State = State.IDLE;
         StartCoroutine(Movement());
 
     }

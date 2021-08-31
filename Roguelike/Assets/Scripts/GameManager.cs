@@ -12,18 +12,19 @@ public class GameManager : MonoBehaviour
     {
         InitializeCharacters();
         StartCoroutine(Player.Movement());
-        StartCoroutine(Player.MeleeAttack());
+        StartCoroutine(Player.MeleeAttack());        
         for (int i = 0; i < Enemy.Count; i++)
         {
+            StartCoroutine(Enemy[i].Move());
             Enemy[i].MeleeAttack();
         }
     }
 
     private void Update()
     {
+        //print(Player.State);    
         if (Player.State == State.MOVING)
-            //print(Player.State);
-        Combat();
+            Combat();
 
     }
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < Enemy.Count; i++)
         {
+            
             Enemy[i].MeleeAttack();
             Enemy[i].Death();
         }
